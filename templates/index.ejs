@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>pinger</title>
+  <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style> pre { max-height: 8em; min-height: 8em; overflow: scroll; font-size: 11px; }</style>
+  <script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>pinger <small>A thing for making sure stuff is up.</small></h1>
+    </div>
+
+    <% urls.forEach(function(url, i){ %>
+      <% var resp = responses[url.hostname]; %>
+      <% if( i % 2 === 0 ){ %><div class="row"><% } %>
+      <div class="span6" data-url="<%= url.hostname %>">
+        <h2><%= url.hostname %></h2>
+        <div class="alert alert-success">
+          <strong>All Good.</strong> Everything is kosher up in here.
+        </div>
+        <p>
+          <small>Last ping: <code><%= (resp && resp.statusCode) %></code> on <a href="<%= url.href %>" target="_BLANK"><i class="timestamp"><%= (resp && resp.timestamp) %></i></a></small>
+        </p>
+        <h5>Headers:</h5>
+        <pre class="headers"><%= (resp && JSON.stringify(resp.headers, '', '  ')) %></pre>
+      </div>
+      <% if( (i + 1) % 2 === 0 ){ %></div><% } %>
+    <% }); %>
+  </div>
+
+  <a href="https://github.com/wookiehangover/pinger"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  <script src="//code.jquery.com/jquery-1.8.1.min.js"></script>
+  <script src="/assets/js/vendor/engine.io.js"></script>
+  <script src="/assets/js/vendor/moment.min.js"></script>
+  <script src="/assets/js/pinger.js"></script>
+</body>

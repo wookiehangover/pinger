@@ -48,7 +48,7 @@ Pinger.prototype.handleRequest = function(err, res){
   if(err){
     this.errors += 1;
     console.log(err);
-    this.emit('alert', err, null, this.errors);
+    this.emit('alert', err, res, this.errors);
   }
 
   if( res ){
@@ -57,13 +57,13 @@ Pinger.prototype.handleRequest = function(err, res){
 
     if( res.statusCode !== this.statusCode ){
       this.errors += 1;
-      this.emit('alert', 'Status Code:'+ res.statusCode, res.headers);
+      this.emit('alert', 'Status Code:'+ res.statusCode, res);
     } else {
-      this.emit('success', +new Date(), res.headers);
+      this.emit('success', +new Date(), res);
     }
   } else {
     this.errors += 1;
-    this.emit('alert', 'Unable to connect to host', null, this.errors);
+    this.emit('alert', 'Unable to connect to host', res, this.errors);
   }
 
   this.emit('ping');

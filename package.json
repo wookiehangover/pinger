@@ -1,6 +1,6 @@
 {
   "name": "pinger",
-  "version": "0.0.0",
+  "version": "0.0.0-2",
   "description": "ERROR: No README.md file found!",
   "main": "pinger.js",
   "scripts": {
@@ -17,7 +17,9 @@
     "compulsive": "~0.2.3",
     "ramrod": "0.0.7",
     "ecstatic": "~0.1.6",
-    "engine.io": "~0.3.3"
+    "engine.io": "~0.3.3",
+    "templar": "~0.1.2",
+    "ejs": "~0.8.3"
   },
   "subdomain": "pinger",
   "engines": {
