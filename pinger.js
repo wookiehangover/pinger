@@ -60,6 +60,7 @@ Pinger.prototype.handleRequest = function(err, res){
       this.emit('alert', 'Status Code:'+ res.statusCode, res);
     } else {
       this.emit('success', +new Date(), res);
+      this.errors = 0;
     }
   } else {
     this.errors += 1;

@@ -41,7 +41,7 @@ urls.forEach(function(url){
         subject: 'Alert: Downtime for '+ hostname,
         text: 'Uh oh, looks like there\'s downtime for '+ hostname +'.\r\n\r\n'+
           err + '\r\n\r\n'+
-          (res.headers ? JSON.stringify(res.headers, '', '  ') : '')
+          (res && res.headers ? JSON.stringify(res.headers, '', '  ') : '')
       };
 
       mailer.sendMail(alert, function(){
@@ -53,8 +53,8 @@ urls.forEach(function(url){
 
     var resp = last_response[hostname] = {
       error: err,
-      headers: res.headers,
-      statusCode: res.statusCode,
+      headers: (res && res.headers),
+      statusCode: (res && res.statusCode),
       hostname: hostname,
       timestamp: +new Date()
     };
