@@ -1,0 +1,26 @@
+{
+  "name": "pinger",
+  "version": "0.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "pinger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "author": "wookiehangover",
+  "license": "BSD",
+  "dependencies": {
+    "request": "~2.11.0",
+    "nodemailer": "~0.3.25",
+    "lodash": "~0.6.1",
+    "compulsive": "~0.2.3",
+    "ramrod": "0.0.7",
+    "ecstatic": "~0.1.6",
+    "engine.io": "~0.3.3"
+  },
+  "subdomain": "pinger",
+  "engines": {
+    "node": "0.8.x"
+  }
+}

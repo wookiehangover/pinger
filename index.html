@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>pinger</title>
+  <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>pinger <small>A thing for making sure stuff is up.</small></h1>
+    </div>
+    <div class="row">
+      <div class="span6" data-url="wookiehangover.com">
+        <h2>wookiehangover.com</h2>
+        <div class="alert alert-success">
+          <strong>All Good.</strong> Everything is kosher up in here.
+        </div>
+        <p><small>Last ping: <i class="timestamp">...</i></small></p>
+        <pre class="headers"></pre>
+      </div>
+
+      <div class="span6" data-url="b.gif.ly">
+        <h2>b.gif.ly</h2>
+        <div class="alert alert-success">
+          <strong>All Good.</strong> Everything is kosher up in here.
+        </div>
+        <p><small>Last ping: <i class="timestamp">...</i></small></p>
+        <pre class="headers"></pre>
+      </div>
+    </div>
+  </div>
+  <script src="//code.jquery.com/jquery-1.8.1.min.js"></script>
+  <script src="/assets/js/vendor/engine.io.js"></script>
+  <script src="/assets/js/vendor/moment.min.js"></script>
+  <script>
+    var socket = new eio.Socket({
+      host: location.hostname,
+      port: location.port
+    });
+
+    socket.on('message', function(data){
+      data = JSON.parse(data);
+      var host = $('[data-url="'+ data.hostname +'"]');
+
+      if( data.timestamp ){
+        var time = moment(data.timestamp).format('MMMM Do YYYY, h:mm:ss a');
+        host.find('.timestamp').text(time);
+      }
+
+      var alert = host.find('.alert');
+
+      if( data.error ){
+        alert
+          .removeClass('alert-success')
+          .addClass('alert-error')
+          .html('<strong>Oh Noes!</strong> '+ data.error);
+      } else if( alert.hasClass('alert-error') && data.success ){
+        alert
+          .removeClass('alert-error')
+          .addClass('alert-success')
+          .html('<strong>All Good.</strong> Everything is kosher up in here.');
+      }
+
+      if( data.headers ){
+        host.find('.headers').text(JSON.stringify(data.headers, '', '  ') );
+      }
+
+    });
+
+  </script>
+</body>
