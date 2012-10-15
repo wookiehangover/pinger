@@ -1,4 +1,6 @@
 var Pinger = require('./pinger');
+var config = require('./config');
+
 var http = require('http');
 var ramrod = require('ramrod');
 var ecstatic = require('ecstatic');
@@ -8,8 +10,6 @@ var templar = require('templar');
 var ejs = require('ejs');
 
 var nodemailer = require('nodemailer');
-
-var config = require('./config');
 var mailer = nodemailer.createTransport(config.mailTransportType, config.mailTransportSettings);
 
 var socket;

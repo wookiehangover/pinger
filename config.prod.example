@@ -1,0 +1,11 @@
+exports.mailTransportType = "SMTP";
+exports.mailTransportSettings = {
+  service: "SendGrid",
+  auth: {
+    user: "username",
+    pass: "passwork"
+  }
+};
+
+exports.to = 'something@example.com';
+
