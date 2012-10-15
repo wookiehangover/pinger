@@ -34,15 +34,9 @@ function Pinger( url, interval, statusCode ){
   this.on('kill', function(){
     self.removeAllListeners('ping');
   });
-
-  this.on('alert', this.alert);
 }
 
 util.inherits(Pinger, EventEmitter);
-
-Pinger.prototype.alert = function(){
-  console.log('oh no, downtime');
-};
 
 Pinger.prototype.handleRequest = function(err, res){
   if(err){

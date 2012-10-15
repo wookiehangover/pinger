@@ -13,21 +13,16 @@ var nodemailer = require('nodemailer');
 var mailer = nodemailer.createTransport(config.mailTransportType, config.mailTransportSettings);
 
 var socket;
+
 // Pinger(s)
 
-var urls = [
-  'http://wookiehangover.com',
-  'http://b.gif.ly',
-  'http://quickleft.com',
-  'http://jifasnif.jit.su'
-];
+var urls = config.urls;
 
 var last_response = {};
 
 urls.forEach(function(url){
   console.log('Starting Pinger:', url);
   var pinger = new Pinger(url, 30e3);
-
   var hostname = urlParse(url).hostname;
 
   pinger.emit('ping', 2e3);
@@ -93,7 +88,6 @@ var presented_urls = urls.map(function(url){
   return urlParse(url);
 });
 
-// TODO: put some templates up in here
 router.on('*', function(req,res){
   res.template('index.ejs', {
     urls: presented_urls,

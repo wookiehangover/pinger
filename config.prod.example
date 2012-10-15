@@ -9,3 +9,6 @@ exports.mailTransportSettings = {
 
 exports.to = 'something@example.com';
 
+exports.url = [
+  'http://localhost:1337'
+];

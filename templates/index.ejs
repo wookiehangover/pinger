@@ -14,21 +14,20 @@
     <div class="page-header">
       <h1>pinger <small>A thing for making sure stuff is up.</small></h1>
     </div>
-
     <% urls.forEach(function(url, i){ %>
       <% var resp = responses[url.hostname]; %>
       <% if( i % 2 === 0 ){ %><div class="row"><% } %>
-      <div class="span6" data-url="<%= url.hostname %>">
-        <h2><%= url.hostname %></h2>
-        <div class="alert alert-success">
-          <strong>All Good.</strong> Everything is kosher up in here.
+        <div class="span6" data-url="<%= url.hostname %>">
+          <h2><%= url.hostname %></h2>
+          <div class="alert alert-success">
+            <strong>All Good.</strong> Everything is kosher up in here.
+          </div>
+          <p>
+            <small>Last ping: <code><%= (resp && resp.statusCode) %></code> on <a href="<%= url.href %>" target="_BLANK"><i class="timestamp"><%= (resp && resp.timestamp) %></i></a></small>
+          </p>
+          <h5>Headers:</h5>
+          <pre class="headers"><%= (resp && JSON.stringify(resp.headers, '', '  ')) %></pre>
         </div>
-        <p>
-          <small>Last ping: <code><%= (resp && resp.statusCode) %></code> on <a href="<%= url.href %>" target="_BLANK"><i class="timestamp"><%= (resp && resp.timestamp) %></i></a></small>
-        </p>
-        <h5>Headers:</h5>
-        <pre class="headers"><%= (resp && JSON.stringify(resp.headers, '', '  ')) %></pre>
-      </div>
       <% if( (i + 1) % 2 === 0 ){ %></div><% } %>
     <% }); %>
   </div>

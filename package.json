@@ -1,13 +1,13 @@
 {
   "name": "pinger",
-  "version": "0.0.0-5",
-  "description": "ERROR: No README.md file found!",
+  "version": "0.0.1",
+  "description": "A thing for making sure stuff is up.",
   "main": "pinger.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -R nyan",
     "start": "node server.js"
   },
-  "repository": "",
+  "repository": "git://github.com/wookiehangover/pinger.git",
   "author": "wookiehangover",
   "license": "BSD",
   "dependencies": {
@@ -24,5 +24,8 @@
   "subdomain": "pinger",
   "engines": {
     "node": "0.8.x"
+  },
+  "devDependencies": {
+    "mocha": "~1.6.0"
   }
 }
