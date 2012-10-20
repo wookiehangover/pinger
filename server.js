@@ -66,6 +66,7 @@ urls.forEach(function(url){
       headers: res.headers,
       statusCode: res.statusCode,
       hostname: hostname,
+      timer: res.time,
       success: true
     };
 
@@ -88,10 +89,24 @@ var presented_urls = urls.map(function(url){
   return urlParse(url);
 });
 
+var strings = [
+  'Everything is kosher up in here.',
+  'This battlestation is <i>fully</i> armed and <i>fully</i> operational.',
+  'Situation Normal.',
+  'Still alive and pinging.',
+  'Seriously, it\'s still up.',
+  'Outcome uncertain, try again later... j/k it\'s still up.',
+  'Really. It\'s still up.',
+  'How many times do you need to check?',
+  'Alive and kicking.',
+  'Internet tubes are working.'
+];
+
 router.on('*', function(req,res){
   res.template('index.ejs', {
     urls: presented_urls,
-    responses: last_response
+    responses: last_response,
+    s: strings
   });
 });
 

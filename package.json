@@ -1,6 +1,6 @@
 {
   "name": "pinger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A thing for making sure stuff is up.",
   "main": "pinger.js",
   "scripts": {

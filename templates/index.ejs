@@ -20,13 +20,28 @@
         <div class="span6" data-url="<%= url.hostname %>">
           <h2><%= url.hostname %></h2>
           <div class="alert alert-success">
-            <strong>All Good.</strong> Everything is kosher up in here.
+            <strong>All Good.</strong> <%- s[Math.round(Math.random() * (s.length - 1))]%>
           </div>
-          <p>
-            <small>Last ping: <code><%= (resp && resp.statusCode) %></code> on <a href="<%= url.href %>" target="_BLANK"><i class="timestamp"><%= (resp && resp.timestamp) %></i></a></small>
-          </p>
+          </table>
+          <h5>Last Ping:</h5>
+          <table class="table table-condensed table-bordered">
+            <tbody>
+              <tr>
+                <td><small>Status Code</small></td>
+                <td><small><code data-key="statusCode"><%= (resp && resp.statusCode) %></code></small></td>
+              </tr>
+              <tr>
+                <td><small>Recieved on</small></td>
+                <td><small><a href="<%= url.href %>" target="_BLANK" data-key="timestamp"><%= (resp && resp.timestamp) %></a></small></td>
+              </tr>
+              <tr>
+                <td><small>Response Time</small></td>
+                <td><small><code class="text-info" data-key="timer"><%= (resp && resp.timer && resp.timer.toFixed(4) )%></code> seconds</small></td>
+              </tr>
+            </tbody>
+          </table>
           <h5>Headers:</h5>
-          <pre class="headers"><%= (resp && JSON.stringify(resp.headers, '', '  ')) %></pre>
+          <pre class="headers" data-key="headers"><%= (resp && JSON.stringify(resp.headers, '', '  ')) %></pre>
         </div>
       <% if( (i + 1) % 2 === 0 ){ %></div><% } %>
     <% }); %>

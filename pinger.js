@@ -68,12 +68,12 @@ Pinger.prototype.ping = function( cb ){
   // console.log('\nSending Request:');
   this.tick += 1;
   var self = this;
-  // var time = process.hrtime();
+  var time = process.hrtime();
   request.head(this.url, function(err, res){
-
-    // var diff = process.hrtime(time);
-    // console.log('benchmark took %d seconds and %d nanoseconds',
-    //           diff[0], diff[1]);
+    var diff = process.hrtime(time);
+    if(res){
+      res.time = diff[0] + (diff[1] / 1e9);
+    }
 
     cb.call(self, null, res);
   });
